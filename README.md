@@ -19,3 +19,7 @@
 7. bcrypt using for password encryption 
 - yarn add bcrypt
 - use in authController
+
+8. use express validation 
+- install (yarn add/install --save express-validator)
+- use express validator in database server side 
