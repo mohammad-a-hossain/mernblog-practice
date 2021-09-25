@@ -1,0 +1,22 @@
+<%- include('../partials/head.ejs') %>
+
+
+<div style="width:60%;height:auto;margin:0, auto;padding:50px;">
+     <h2>login page</h2>
+        <form action="/auth/login" method="POST">
+        
+          <label for="lname">user email</label>
+          <input type="email" id="lname" name="email" placeholder="Your last name..">
+        <br>
+          <label for="lname">user password</label>
+          <input type="password" id="lname" name="password" placeholder="Your last name..">
+         
+<br>
+          <input type="submit" value="Submit">
+        </form>
+        <br>
+        <a href="/auth/signup">signup</a>
+      </div>
+      
+
+<%- include('../partials/footer.ejs') %>
