@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+//const validatorRoute = require('./validator/validator.js')
 
 
 
@@ -27,6 +28,9 @@ const middleware = [
 ]
 app.use(middleware)
 app.use('/auth',authRoutes)
+//app.use('/playground',validatorRoute)
+
+
 app.get('/',(req,res)=>{
    
   

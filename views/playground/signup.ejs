@@ -1,0 +1,28 @@
+<%- include('../pages/partials/head.ejs') %>
+
+
+<div style="width:60%;height:auto;margin:0, auto;padding:50px;">
+  <h5>extra</h5>
+        <form action="/playground/validator" method="POST">
+        
+             <label for="fname">user Name</label>
+          <input type="text" id="fname" name="userName" placeholder="Your name..">
+        <br>
+      
+          <label for="lname">user email</label>
+          <input type="email" id="lname" name="email" placeholder="Your last name..">
+        <br>
+          <label for="lname">user password</label>
+          <input type="password" id="lname" name="password" placeholder="Your last name..">
+            <br>
+          <label for="lname">confirm-password</label>
+          <input type="password" id="lname" name="confPassword" placeholder="Your last name..">
+<br>
+          <input type="submit" value="Submit">
+        </form>
+
+      <a href="/auth/login">login</a>
+      </div>
+      
+
+<%- include('../pages/partials/footer.ejs') %>

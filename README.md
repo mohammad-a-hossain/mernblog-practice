@@ -20,6 +20,8 @@
 - yarn add bcrypt
 - use in authController
 
-8. use express validation 
-- install (yarn add/install --save express-validator)
+8. use express validation //not done
+- install (yarn add/install --save express-validator)//yarn add express-validator
 - use express validator in database server side 
+- use playground page for practising express validator
+- use custorm validator in validator.js
