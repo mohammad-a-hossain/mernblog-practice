@@ -3,19 +3,41 @@
 
 <div style="width:60%;height:auto;margin:0, auto;padding:50px;">
         <form action="/auth/signUp" method="POST">
-        
-             <label for="fname">user Name</label>
-          <input type="text" id="fname" name="userName" placeholder="Your name..">
+         <div class="form-group">
+              <label for="fname">user Name</label>
+          <input type="text" id="fname" name="userName" class="form-control <%= error.userName ?'is-invalid':'' %>" value="<%= value.userName ?'is-invalid':'' %>"/>
+           <div class="invalid-feedback" style="color:brown">
+            <%= error.userName && error.userName %>
+           </div>
+         </div>
+          
         <br>
-      
-          <label for="lname">user email</label>
-          <input type="email" id="lname" name="email" placeholder="Your last name..">
+         <div class="form-group">
+            <label for="lname">user email</label>
+          <input type="email" id="lname" name="email"  class="form-control  <%= error.email ?'is-invalid':'' %>" value="<%= value.email ?'is-invalid':'' %>"  placeholder="Your last name.."/>
+          <div class="invalid-feedback" style="color:brown">
+              <%= error.email && error.email %>
+          </div>
+         </div>
+         
         <br>
-          <label for="lname">user password</label>
-          <input type="password" id="lname" name="password" placeholder="Your last name..">
+        <div class="form-group">
+        <label for="lname">user password</label>
+          <input type="password" id="lname" name="password"  class="form-control <%= error.password ?'is-invalid':'' %>" value="<%= value.password ?'is-invalid':'' %>"  placeholder="Your last name.."/>
+          <div class="invalid-feedback" style="color:brown">
+              <%= error.password && error.password %>
+          </div>
+        </div>
+         
             <br>
-          <label for="lname">confirm-password</label>
-          <input type="password" id="lname" name="confPassword" placeholder="Your last name..">
+            <div class="form-group">
+         <label for="lname">confirm-password</label>
+          <input type="password" id="lname" name="confPassword"  class="form-control  <%= error.confPassword ?'is-invalid':'' %>" value="<%= value.confPassword ?'is-invalid':'' %>" placeholder="Your last name.."/>
+          <div class="invalid-feedback" style="color:brown">
+              <%= error.confPassword && error.confPassword %>
+          </div>
+            </div>
+        
 <br>
           <input type="submit" value="Submit">
         </form>

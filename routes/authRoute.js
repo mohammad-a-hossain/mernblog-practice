@@ -25,26 +25,32 @@ const signupValidaton =
     body('userName')
     .isLength({min:3,max:10}).withMessage('userName must be >3 and <10')
     .custom(async userName =>{
-        let user = await User.findOne({userName})
-        if(user){
+        let username = await User.findOne({userName})
+        if(username){
             return Promise.reject('user name already exist')
         }
+        return true
     }),
     body('email')
-    .isEmail().withMessage('please provide a valid msg')
+    .isEmail().withMessage('please provide a valid email')
     .custom(async email=>{
-        let email =await User.findOne({email})
-        if(email){
+        let useremail = await User.findOne({email})
+        if(useremail){
             return Promise.reject('email already used')
         }
-    }),
+        return true
+    })
+    .normalizeEmail(),
     body('password')
-    .isEmail({min:5}).withMessage('password must be have 5 chars'),
+    .isLength({min:5}).withMessage('password must be have 5 chars'),
+
     body('confPassword')
-    .custom(confPassword, ({req})=>{
+    .isLength()
+    .custom((confPassword,{req})=>{
         if(confPassword !== req.body.password){
             throw new Error('password did not mathed')
         }
+        return true
     })
     
 ]
