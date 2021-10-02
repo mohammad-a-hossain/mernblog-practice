@@ -10,9 +10,10 @@ const errorFormatter= require('../utilities/validationErrorFormatter')
 
 
 exports.signUpGetController =(req,res,next)=>{
-    res.render('pages/auth/signUp',{title:'create accoutn',error:{},value:{}})
+    res.render('pages/auth/signUp',{title:'create accoutn',error:{}})
 
 }
+
 exports.signUpPostController =async(req,res,next)=>{
     //console.log(req.body)
       let {userName,email,password} = req.body 
@@ -20,22 +21,15 @@ exports.signUpPostController =async(req,res,next)=>{
      if(!errors.isEmpty()){
          //return console.log(errors.mapped())
          return res.render('pages/auth/signUp',
-         {title:'create accoutn',error:errors.mapped(),
-         value:{
-             userName,email,password
-         }
-        })
+         {title:'create accoutn',error:errors.mapped()})
      }
-
-  
-
    
      try{
          //using bcrypt
          let hassedPassword = await bcrypt.hash(password,11)
          let user = new User({
                   userName,
-                 email,
+                     email,
                  password:hassedPassword
              })
 
@@ -52,11 +46,21 @@ exports.signUpPostController =async(req,res,next)=>{
    
 }
 exports.loginGetController = (req,res,next) =>{
-    res.render('pages/auth/login',{title:'login  accoutn'})
+    res.render('pages/auth/login',{title:'login  accoutn',error:{}})
 
 }
 exports.loginPostController = async (req,res,next) =>{
     let {email,password} = req.body 
+
+  
+    let errors =validationResult(req).formatWith(errorFormatter)
+     if(!errors.isEmpty()){
+         //return console.log(errors.mapped())
+         return res.render('pages/auth/login',
+         {title:'login account',error:errors.mapped()})
+     }
+
+    
 
      try{
      let user = await User.findOne({email})

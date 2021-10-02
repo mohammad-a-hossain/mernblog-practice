@@ -2,14 +2,25 @@
 
 
 <div style="width:60%;height:auto;margin:0, auto;padding:50px;">
-     <h2>login page</h2>
+     <h2>login page it</h2>
         <form action="/auth/login" method="POST">
-        
+          <div class="form-group">
           <label for="lname">user email</label>
-          <input type="email" id="lname" name="email" placeholder="Your last name..">
+          <input type="email" id="lname" name="email" class="form-control <%= error.email ?'is-invalid':'' %>" placeholder="Your last name.."/>
+          <div class="invalid-feedback" style="color:brown">
+            <%= error.email && error.email %>
+           </div>
+        </div>
         <br>
+        <div class="form-group">
           <label for="lname">user password</label>
-          <input type="password" id="lname" name="password" placeholder="Your last name..">
+          <input type="password" id="lname" name="password" placeholder="Your last name.."
+          class="form-control <%= error.password ?'is-invalid':'' %>" />
+          <div class="invalid-feedback" style="color:brown">
+            <%= error.password && error.password %>
+           </div>
+        </div>
+      
          
 <br>
           <input type="submit" value="Submit">
