@@ -36,7 +36,7 @@ exports.signUpPostController =async(req,res,next)=>{
 
        let createUser = await user.save()
        console.log('user create success',createUser) 
-       res.render('pages/auth/signUp',{title:'create accoutn'})
+       res.render('pages/auth/signUp',{title:'create accoutn',error:{}})
      }catch(e){
      console.log(e)
      next(e)
@@ -46,6 +46,7 @@ exports.signUpPostController =async(req,res,next)=>{
    
 }
 exports.loginGetController = (req,res,next) =>{
+ 
     res.render('pages/auth/login',{title:'login  accoutn',error:{}})
 
 }
@@ -56,6 +57,7 @@ exports.loginPostController = async (req,res,next) =>{
     let errors =validationResult(req).formatWith(errorFormatter)
      if(!errors.isEmpty()){
          //return console.log(errors.mapped())
+
          return res.render('pages/auth/login',
          {title:'login account',error:errors.mapped()})
      }
@@ -76,8 +78,10 @@ exports.loginPostController = async (req,res,next) =>{
             message:"invalid credintials pass"
         })
      }
+     
       console.log('login success',user)
-      res.render('pages/auth/login',{title:'login  accoutn'})
+     
+      res.render('pages/auth/login',{title:'login  accoutn',error:{}})
 
      }catch(e){
          console.log(e)

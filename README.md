@@ -25,3 +25,12 @@
 - use express validator in database server side 
 - use playground page for practising express validator
 - use custorm validator in validator.js
+9. signup validation and login validation 
+- use separate validator for signup and login 
+- show error msg in front end
+- making validator folder and auth folder inside login and signup file for controller
+10. Authentication as in middleware
+- use session in server as a middleweare
+- use session run code (yarn add express-session)
+- go to app.js import session 
+- set session as middleware and use in login.js

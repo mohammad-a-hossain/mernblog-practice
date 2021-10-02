@@ -6,18 +6,18 @@
         <form action="/auth/login" method="POST">
           <div class="form-group">
           <label for="lname">user email</label>
-          <input type="email" id="lname" name="email" class="form-control <%= error.email ?'is-invalid':'' %>" placeholder="Your last name.."/>
+          <input type="email" id="lname" name="email" class="form-control" placeholder="Your last name.."/>
           <div class="invalid-feedback" style="color:brown">
-            <%= error.email && error.email %>
+          
            </div>
         </div>
         <br>
         <div class="form-group">
           <label for="lname">user password</label>
           <input type="password" id="lname" name="password" placeholder="Your last name.."
-          class="form-control <%= error.password ?'is-invalid':'' %>" />
+          class="form-control" />
           <div class="invalid-feedback" style="color:brown">
-            <%= error.password && error.password %>
+            
            </div>
         </div>
       
