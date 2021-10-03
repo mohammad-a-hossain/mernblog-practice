@@ -53,7 +53,7 @@ app.get('/',(req,res)=>{
 const PORT = process.env.PORT | 9000
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/test',
+mongoose.connect('mongodb+srv://abusen:abusen123@cluster0.95z2h.mongodb.net/mernblog',
 {useNewUrlParser:true})
 .then(()=>{
     console.log('databse connected')
