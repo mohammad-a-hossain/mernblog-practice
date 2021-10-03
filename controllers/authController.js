@@ -46,8 +46,8 @@ exports.signUpPostController =async(req,res,next)=>{
    
 }
 exports.loginGetController = (req,res,next) =>{
- 
-    res.render('pages/auth/login',{title:'login  accoutn',error:{}})
+    console.log(req.session.isLoggedIn, req.session.user)
+    res.render('pages/auth/login',{title:'login  accoutn'})
 
 }
 exports.loginPostController = async (req,res,next) =>{
@@ -79,9 +79,11 @@ exports.loginPostController = async (req,res,next) =>{
         })
      }
      
-      console.log('login success',user)
-     
-      res.render('pages/auth/login',{title:'login  accoutn',error:{}})
+     // console.log('login success',user)
+     //setting session
+     req.session.isLoggedIn=true
+     req.session.user =user
+    res.render('pages/auth/login',{title:'login  accoutn'})
 
      }catch(e){
          console.log(e)

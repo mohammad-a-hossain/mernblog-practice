@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const session = require('express-session')
 //const validatorRoute = require('./validator/validator.js')
 
 
@@ -24,7 +25,15 @@ const middleware = [
     morgan('dev'),
     express.static('public'),
     express.urlencoded({extended:true}),
-    express.json()
+    express.json(),
+    session({
+        secret:process.env.SECRET_KEY || 'SECRET_KEY',
+        resave:false,
+        saveUninitialized:true,
+        cookie:{
+            maxAge:60*60*60+1000
+        }
+    })
 ]
 app.use(middleware)
 app.use('/auth',authRoutes)
@@ -47,6 +56,7 @@ const PORT = process.env.PORT | 9000
 mongoose.connect('mongodb://127.0.0.1:27017/test',
 {useNewUrlParser:true})
 .then(()=>{
+    console.log('databse connected')
 app.listen(PORT,()=>{
 console.log(`the mernblog app in running on port ${PORT}`)
 })
