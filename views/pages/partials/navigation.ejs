@@ -1,7 +1,15 @@
 <nav style="width:100%;height:50px;padding:10px;background:rgb(155, 190, 155)">
     <div >
-        <a style="margin: 10px" href="">home</a> <a style="margin: 10px" href="/auth/signup">signUp</a> <a style="margin: 10px" href="/auth/login">Login</a>
-        <a style="margin: 10px" href="">logout</a> 
+        <a style="margin: 10px" href="">home</a> <a style="margin: 10px" href="/auth/signup">signUp</a> 
+        <%
+        if(isLoggedIn){ %>
+        <a style="margin: 10px" href="/auth/logout">logout</a> 
+       <% }else{%>
+     <a style="margin: 10px" href="/auth/login">Login</a>
+       <% }
+        
+        %>
+        
     </div>
     
 </nav>

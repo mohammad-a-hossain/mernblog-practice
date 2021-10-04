@@ -13,6 +13,11 @@ const store = new MongoDBStore({
 
 // import route
 const authRoutes= require('./routes/authRoute')
+const dashboardRoute= require('./routes/dashboardRoute')
+
+// import middleweare
+const {bindUserWithRequest}=require('./middlewears/authmiddleweare')
+const setLocals = require('./middlewears/setLocals')
 const app = express()
 
 //set up view engeen
@@ -33,10 +38,13 @@ const middleware = [
         //     maxAge:60*60*60+1000
         // }
         store:store
-    })
+    }),
+    bindUserWithRequest(),
+    setLocals()
 ]
 app.use(middleware)
 app.use('/auth',authRoutes)
+app.use('/dashboard',dashboardRoute)
 //app.use('/playground',validatorRoute)
 
 

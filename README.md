@@ -40,6 +40,19 @@
 
 11. user session authorization
 - to cheek if user is loggedin or not
-- in middleweare make file authMiddleware.js 
-
-12. creating dashboard page
+- in middleweare make file authMiddleware.js and set a controller function
+- then use the middleweare in server.js as import the middleweare and bind with middleweare array[]
+- it will watch if the user islogged in or not
+12. creating setlocals page in middleweare
+- it will display from views page
+- import in server.js and bind with middlewear
+13. creting Dashboard and its route
+- creating a route name dashboard.js in routes
+14. creating dashboard controller in controller folder
+- create a dashboardController.js in controller folder
+15. making logout mecanism in navber
+- in navbar set loggedin condition 
+- make a logout controller and implement 
+16. unauthenticate middleweare setup
+- making a unauthenticate middlewear in middlewear folder
+- set unauthenticate for set is not logged in will redirect

@@ -11,18 +11,19 @@ const {
     loginGetController,
     loginPostController,
 
-    logoutGetController,
-    logoutPostController
+
+    logoutController
 
 } = require('../controllers/authController')
+const {unAuthenticated} = require('../middlewears/authmiddleweare')
 
-router.get('/signUp',signUpGetController)
-router.post('/signUp',signupValidator, signUpPostController)
+router.get('/signUp',unAuthenticated,signUpGetController)
+router.post('/signUp',unAuthenticated,signupValidator, signUpPostController)
 
-router.get('/login',loginGetController)
-router.post('/login',loginValidator,loginPostController)
+router.get('/login',unAuthenticated,loginGetController)
+router.post('/login',unAuthenticated,loginValidator,loginPostController)
 
-router.get('/logout',logoutGetController)
-router.post('/logout',logoutPostController)
+router.get('/logout',logoutController)
+
 
 module.exports = router
