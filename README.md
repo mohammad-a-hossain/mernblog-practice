@@ -34,3 +34,12 @@
 - use session run code (yarn add express-session)
 - go to app.js import session 
 - set session as middleware and use in login.js
+- set mongodb connect to atlas and locals with connect url
+- install connect-mongodb-session for session storage
+(npm/yarn i/add connect-mongodb-session) and set store in server.app
+
+11. user session authorization
+- to cheek if user is loggedin or not
+- in middleweare make file authMiddleware.js 
+
+12. creating dashboard page

@@ -2,15 +2,14 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
-//const validatorRoute = require('./validator/validator.js')
+const MongoDBStore = require('connect-mongodb-session')(session);
 
-
-
-//  const mongoDbUri = 'mongodb://127.0.0.1:27017/mernblog'
-
-
-// mongoose.set('useCreateIndex', true)// using for search index
-// mongoose.set('useFindAndModify', false);
+const mongoDb_Uri='mongodb+srv://abusen:abusen123@cluster0.95z2h.mongodb.net/mernblog'
+const store = new MongoDBStore({
+    uri: mongoDb_Uri,
+    collection: 'blogsession',
+    expires:1000*60*60*2
+  });
 
 // import route
 const authRoutes= require('./routes/authRoute')
@@ -30,9 +29,10 @@ const middleware = [
         secret:process.env.SECRET_KEY || 'SECRET_KEY',
         resave:false,
         saveUninitialized:true,
-        cookie:{
-            maxAge:60*60*60+1000
-        }
+        // cookie:{
+        //     maxAge:60*60*60+1000
+        // }
+        store:store
     })
 ]
 app.use(middleware)
@@ -53,7 +53,7 @@ app.get('/',(req,res)=>{
 const PORT = process.env.PORT | 9000
 
 
-mongoose.connect('mongodb+srv://abusen:abusen123@cluster0.95z2h.mongodb.net/mernblog',
+mongoose.connect(mongoDb_Uri,
 {useNewUrlParser:true})
 .then(()=>{
     console.log('databse connected')
