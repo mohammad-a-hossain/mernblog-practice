@@ -56,3 +56,15 @@
 16. unauthenticate middleweare setup
 - making a unauthenticate middlewear in middlewear folder
 - set unauthenticate for set is not logged in will redirect
+17. set enviornment 
+- set secret key hide from member using processDotEnv
+- set DB_Admin in server.js 
+- install 3rd party module dotEnv 
+- should use form the top of app and make a root file .env to set all environment
+- make defaul.env for another env file to use
+18. configuration set up
+- make a config file in config folder
+- to set if the app on development mood or production mood
+make a logic in server.js file 
+- install npm config package
+- making a defaul.json file in config folder 

@@ -1,10 +1,21 @@
+//set dotenv first
+ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session);
+const config = require('config')
 
-const mongoDb_Uri='mongodb+srv://abusen:abusen123@cluster0.95z2h.mongodb.net/mernblog'
+//setting secret key using environment
+/* we can use direct the variable
+let DB_ADMIN= process.env.DB_ADMIN
+let DB_PASSWORD= process.env.DB_PASSWORD 
+*/
+
+// const mongoDb_Uri=`mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.95z2h.mongodb.net/mernblog`
+
+const mongoDb_Uri=`mongodb+srv://${config.get('db-userName')}:${config.get('db-password')}@cluster0.95z2h.mongodb.net/mernblog`
 const store = new MongoDBStore({
     uri: mongoDb_Uri,
     collection: 'blogsession',
@@ -20,6 +31,13 @@ const {bindUserWithRequest}=require('./middlewears/authmiddleweare')
 const setLocals = require('./middlewears/setLocals')
 const app = express()
 
+//const config =require('./config/config')
+if(app.get('env').toLowerCase()==='development'){
+    console.log(config.dev.name)
+}else{
+    console.log(config.prod.name)
+}
+
 //set up view engeen
 app.set('view engine','ejs')
 app.set('views','views')
@@ -31,7 +49,8 @@ const middleware = [
     express.urlencoded({extended:true}),
     express.json(),
     session({
-        secret:process.env.SECRET_KEY || 'SECRET_KEY',
+        //secret:process.env.SECRET_KEY || 'SECRET_KEY',
+        secret:config.get("secret"),
         resave:false,
         saveUninitialized:true,
         // cookie:{
@@ -42,6 +61,7 @@ const middleware = [
     bindUserWithRequest(),
     setLocals()
 ]
+//console.log(process.env.NODE_ENV)
 app.use(middleware)
 app.use('/auth',authRoutes)
 app.use('/dashboard',dashboardRoute)
